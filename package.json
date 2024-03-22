@@ -15,10 +15,10 @@
 		"start": "wp-scripts start --webpack-copy-php"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^27.4.0"
+		"@wordpress/scripts": "^27.5.0"
 	},
 	"dependencies": {
-		"@wordpress/components": "^27.1.0",
-		"@wordpress/icons": "^9.44.0"
+		"@wordpress/components": "^27.2.0",
+		"@wordpress/icons": "^9.45.0"
 	}
 }
