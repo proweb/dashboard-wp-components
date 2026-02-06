@@ -1,78 +1,113 @@
 import { createRoot } from '@wordpress/element';
 import {
-	Panel,
-	PanelBody,
-	PanelRow,
 	Button,
 	__experimentalHeading as Heading, // eslint-disable-line @wordpress/no-unsafe-wp-apis
+	Panel,
+	PanelBody,
+	NoticeList,
 } from '@wordpress/components';
-import { verse, plusCircle, external } from '@wordpress/icons';
+import { DataForm } from '@wordpress/dataviews/wp';
+import { useSelect, useDispatch } from '@wordpress/data';
+import { store as noticesStore } from '@wordpress/notices';
+import { __ } from '@wordpress/i18n';
+import { useSettings } from './hooks/use-settings';
 
-const rootElement = document.getElementById( 'demo-app' );
+const App = () => {
+	const { settings, setSettings, saveSettings } = useSettings();
+	const notices = useSelect(
+		( select ) => select( noticesStore ).getNotices(),
+		[]
+	);
+	const { removeNotice } = useDispatch( noticesStore );
 
-/**
- * App component renders a demonstration panel using React components
- * from WordPress. It includes two PanelBody sections:
- *
- * 1. The first PanelBody provides a heading and a description paragraph
- *    with an icon, showcasing the use of React components for interface
- *    development.
- *
- * 2. The second PanelBody displays various styled buttons, demonstrating
- *    different button variants available in WordPress components. Each
- *    button has specific styling and some have icons with specific positions.
- */
+	const fields = [
+		{
+			id: 'message',
+			label: __( 'Message', 'dashboard-wp-components' ),
+			type: 'text',
+			Edit: 'textarea',
+		},
+		{
+			id: 'display',
+			label: __( 'Display', 'dashboard-wp-components' ),
+			type: 'boolean',
+			Edit: 'toggle',
+		},
+		{
+			id: 'size',
+			label: __( 'Font size', 'dashboard-wp-components' ),
+			type: 'text',
+			Edit: 'toggleGroup',
+			elements: [
+				{
+					value: 'small',
+					label: __( 'Small', 'dashboard-wp-components' ),
+				},
+				{
+					value: 'medium',
+					label: __( 'Medium', 'dashboard-wp-components' ),
+				},
+				{
+					value: 'large',
+					label: __( 'Large', 'dashboard-wp-components' ),
+				},
+				{
+					value: 'x-large',
+					label: __( 'Extra Large', 'dashboard-wp-components' ),
+				},
+			],
+		},
+	];
 
-const App = () => (
-	<>
-		<Panel header="Hello! React in WordPress">
-			<PanelBody
-				title="Title for PanelBody"
-				icon={ verse }
-				initialOpen={ true }
-			>
+	const form = {
+		fields: [
+			{
+				id: 'bar',
+				label: __( 'General', 'dashboard-wp-components' ),
+				children: [ 'message', 'display' ],
+				layout: { type: 'card', withHeader: false },
+			},
+			{
+				id: 'appearance',
+				label: __( 'Appearance', 'dashboard-wp-components' ),
+				children: [ 'size' ],
+				layout: { type: 'card', isOpened: false },
+			},
+		],
+	};
+
+	return (
+		<Panel header={ __( 'DataForm Demo', 'dashboard-wp-components' ) }>
+			<PanelBody>
+				<NoticeList notices={ notices } onRemove={ removeNotice } />
 				<Heading level={ 2 }>
-					Компоненты на React для разработки интерфейса
+					{ __(
+						'Configure Plugin Settings',
+						'dashboard-wp-components'
+					) }
 				</Heading>
-				<PanelRow>
-					<p>демо-плагин. Создано c учебными целями...</p>
-				</PanelRow>
-				<PanelRow>
-					<>
-						<Heading level={ 4 }>
-							разработка - Сергей Мочалов
-						</Heading>
-					</>
-				</PanelRow>
-			</PanelBody>
-
-			<PanelBody title="Компоненты: Buttons" initialOpen={ true }>
-				<Heading level={ 3 }>Стили кнопок:</Heading>
-				<PanelRow>
-					<Button icon={ plusCircle } iconPosition="left">
-						Defaut
+				<DataForm
+					data={ settings }
+					fields={ fields }
+					form={ form }
+					onChange={ ( edits ) =>
+						setSettings( ( current ) => ( {
+							...current,
+							...edits,
+						} ) )
+					}
+				/>
+				<div style={ { marginTop: '20px' } }>
+					<Button variant="primary" onClick={ saveSettings }>
+						{ __( 'Save Settings', 'dashboard-wp-components' ) }
 					</Button>
-					<Button variant="primary">Primary</Button>
-					<Button
-						variant="secondary"
-						onClick={ () => window.alert( 'Secondary' ) } // eslint-disable-line no-alert
-					>
-						Secondary
-					</Button>
-					<Button variant="tertiary">Tertiary</Button>
-					<Button
-						variant="link"
-						icon={ external }
-						iconPosition="right"
-					>
-						Link
-					</Button>
-				</PanelRow>
+				</div>
 			</PanelBody>
 		</Panel>
-	</>
-);
+	);
+};
 
+const rootElement = document.getElementById( 'demo-app' );
 if ( rootElement ) {
 	createRoot( rootElement ).render( <App /> );
 }
