@@ -1,10 +1,14 @@
 import { createRoot } from '@wordpress/element';
-import { Panel, PanelBody, PanelRow, Button } from "@wordpress/components";
-import { __experimentalHeading as Heading } from "@wordpress/components";
-import { verse, plusCircle, external } from "@wordpress/icons";
+import {
+	Panel,
+	PanelBody,
+	PanelRow,
+	Button,
+	__experimentalHeading as Heading, // eslint-disable-line @wordpress/no-unsafe-wp-apis
+} from '@wordpress/components';
+import { verse, plusCircle, external } from '@wordpress/icons';
 
-
-const rootElement = document.getElementById('demo-app');
+const rootElement = document.getElementById( 'demo-app' );
 
 /**
  * App component renders a demonstration panel using React components
@@ -22,8 +26,12 @@ const rootElement = document.getElementById('demo-app');
 const App = () => (
 	<>
 		<Panel header="Hello! React in WordPress">
-			<PanelBody title="Title for PanelBody" icon={verse} initialOpen={true}>
-				<Heading level={2}>
+			<PanelBody
+				title="Title for PanelBody"
+				icon={ verse }
+				initialOpen={ true }
+			>
+				<Heading level={ 2 }>
 					Компоненты на React для разработки интерфейса
 				</Heading>
 				<PanelRow>
@@ -31,23 +39,32 @@ const App = () => (
 				</PanelRow>
 				<PanelRow>
 					<>
-						<Heading level={4}>разработка - Сергей Мочалов</Heading>
+						<Heading level={ 4 }>
+							разработка - Сергей Мочалов
+						</Heading>
 					</>
 				</PanelRow>
 			</PanelBody>
 
-			<PanelBody title="Компоненты: Buttons" initialOpen={true}>
-				<Heading level={3}>Стили кнопок:</Heading>
+			<PanelBody title="Компоненты: Buttons" initialOpen={ true }>
+				<Heading level={ 3 }>Стили кнопок:</Heading>
 				<PanelRow>
-					<Button icon={plusCircle} iconPosition="left">
+					<Button icon={ plusCircle } iconPosition="left">
 						Defaut
 					</Button>
 					<Button variant="primary">Primary</Button>
-					<Button variant="secondary" onClick={() => alert("Secondary")}>
+					<Button
+						variant="secondary"
+						onClick={ () => window.alert( 'Secondary' ) } // eslint-disable-line no-alert
+					>
 						Secondary
 					</Button>
 					<Button variant="tertiary">Tertiary</Button>
-					<Button variant="link" icon={external} iconPosition="right">
+					<Button
+						variant="link"
+						icon={ external }
+						iconPosition="right"
+					>
 						Link
 					</Button>
 				</PanelRow>
@@ -56,6 +73,6 @@ const App = () => (
 	</>
 );
 
-if (rootElement) {
-    createRoot(rootElement).render(<App />);
+if ( rootElement ) {
+	createRoot( rootElement ).render( <App /> );
 }
