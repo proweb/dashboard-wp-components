@@ -3,6 +3,7 @@ import {
 	Panel,
 	PanelBody,
 	PanelRow,
+	TabPanel as Tabs,
 	Button,
 	__experimentalHeading as Heading, // eslint-disable-line @wordpress/no-unsafe-wp-apis
 } from '@wordpress/components';
@@ -68,6 +69,38 @@ const App = () => (
 						Link
 					</Button>
 				</PanelRow>
+			</PanelBody>
+
+			<PanelBody title="Tabs example" initialOpen={ true }>
+				<Tabs
+					tabs={ [
+						{
+							name: 'profile',
+							title: 'Profile',
+						},
+						{
+							name: 'education',
+							title: 'Education',
+						},
+						{
+							name: 'services',
+							title: 'Services',
+						},
+					] }
+				>
+					{ ( tab ) => (
+						<PanelRow>
+							<p>
+								Hello World #
+								{ tab.name === 'profile'
+									? '1'
+									: tab.name === 'education'
+									? '2'
+									: '3' }
+							</p>
+						</PanelRow>
+					) }
+				</Tabs>
 			</PanelBody>
 		</Panel>
 	</>
