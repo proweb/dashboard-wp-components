@@ -1,4 +1,4 @@
-import { createRoot } from "@wordpress/element";
+import { createRoot } from '@wordpress/element';
 import {
 	Panel,
 	PanelBody,
@@ -6,10 +6,10 @@ import {
 	TabPanel as Tabs,
 	Button,
 	__experimentalHeading as Heading, // eslint-disable-line @wordpress/no-unsafe-wp-apis
-} from "@wordpress/components";
-import { verse, plusCircle, external } from "@wordpress/icons";
+} from '@wordpress/components';
+import { verse, plusCircle, external } from '@wordpress/icons';
 
-const rootElement = document.getElementById("demo-app");
+const rootElement = document.getElementById( 'demo-app' );
 
 /**
  * App component renders a demonstration panel using React components
@@ -27,8 +27,12 @@ const rootElement = document.getElementById("demo-app");
 const App = () => (
 	<>
 		<Panel header="React in WordPress">
-			<PanelBody title="Title for PanelBody" icon={verse} initialOpen={true}>
-				<Heading level={2}>
+			<PanelBody
+				title="Title for PanelBody"
+				icon={ verse }
+				initialOpen={ true }
+			>
+				<Heading level={ 2 }>
 					Компоненты на React для разработки интерфейса
 				</Heading>
 				<PanelRow>
@@ -36,66 +40,72 @@ const App = () => (
 				</PanelRow>
 				<PanelRow>
 					<>
-						<Heading level={4}>разработка - Сергей Мочалов</Heading>
+						<Heading level={ 4 }>
+							разработка - Сергей Мочалов
+						</Heading>
 					</>
 				</PanelRow>
 			</PanelBody>
 
-			<PanelBody title="Компоненты: Buttons" initialOpen={true}>
-				<Heading level={3}>Стили кнопок:</Heading>
+			<PanelBody title="Компоненты: Buttons" initialOpen={ true }>
+				<Heading level={ 3 }>Стили кнопок:</Heading>
 				<PanelRow>
-					<Button icon={plusCircle} iconPosition="left">
+					<Button icon={ plusCircle } iconPosition="left">
 						Defaut
 					</Button>
 					<Button variant="primary">Primary</Button>
 					<Button
 						variant="secondary"
-						onClick={() => window.alert("Secondary")} // eslint-disable-line no-alert
+						onClick={ () => window.alert( 'Secondary' ) } // eslint-disable-line no-alert
 					>
 						Secondary
 					</Button>
 					<Button variant="tertiary">Tertiary</Button>
-					<Button variant="link" icon={external} iconPosition="right">
+					<Button
+						variant="link"
+						icon={ external }
+						iconPosition="right"
+					>
 						Link
 					</Button>
 				</PanelRow>
 			</PanelBody>
 
-			<PanelBody title="Tabs example" initialOpen={true}>
+			<PanelBody title="Tabs example" initialOpen={ true }>
 				<Tabs
-					tabs={[
+					tabs={ [
 						{
-							name: "profile",
-							title: "Profile",
+							name: 'profile',
+							title: 'Profile',
 						},
 						{
-							name: "education",
-							title: "Education",
+							name: 'education',
+							title: 'Education',
 						},
 						{
-							name: "services",
-							title: "Services",
+							name: 'services',
+							title: 'Services',
 						},
-					]}
+					] }
 				>
-					{(tab) => (
+					{ ( tab ) => (
 						<PanelRow>
 							<p>
 								Hello World #
-								{tab.name === "profile"
-									? "1"
-									: tab.name === "education"
-										? "2"
-										: "3"}
+								{ tab.name === 'profile'
+									? '1'
+									: tab.name === 'education'
+									? '2'
+									: '3' }
 							</p>
 						</PanelRow>
-					)}
+					) }
 				</Tabs>
 			</PanelBody>
 		</Panel>
 	</>
 );
 
-if (rootElement) {
-	createRoot(rootElement).render(<App />);
+if ( rootElement ) {
+	createRoot( rootElement ).render( <App /> );
 }
