@@ -88,18 +88,21 @@ const App = () => (
 						},
 					] }
 				>
-					{ ( tab ) => (
-						<PanelRow>
-							<p>
-								Hello World #
-								{ tab.name === 'profile'
-									? '1'
-									: tab.name === 'education'
-									? '2'
-									: '3' }
-							</p>
-						</PanelRow>
-					) }
+					{ ( tab ) => {
+						const tabNumbers = {
+							profile: '1',
+							education: '2',
+							services: '3',
+						};
+						return (
+							<PanelRow>
+								<p>
+									Hello World #
+									{ tabNumbers[ tab.name ] || '1' }
+								</p>
+							</PanelRow>
+						);
+					} }
 				</Tabs>
 			</PanelBody>
 		</Panel>
