@@ -4,7 +4,7 @@
  * Description: Admin page with Gutenberg components
  * Version: 1.0.0
  * Author: Sergey Mochalov
- * 
+ *
  */
 
 namespace KPFU\Plugin\Gutenbergpage;
@@ -27,7 +27,7 @@ function add_assets()
 		// we need it for DOM ready
 		array(
 			'strategy' => 'defer'
-		) 
+		)
 	);
 	wp_enqueue_script('demo-gb-app');
 
@@ -62,3 +62,47 @@ function page_render_markup()
 	# Root node for React mount
 	echo "<div id='demo-app'></div>";
 }
+
+/**
+ * Register settings for the DataForm demo.
+ */
+function dashboard_register_settings() {
+    $default = array(
+        'message' => __( 'Hello, World!', 'dashboard-wp-components' ),
+        'display' => true,
+        'size'    => 'medium',
+    );
+    $schema  = array(
+        'type'       => 'object',
+        'properties' => array(
+            'message' => array(
+                'type' => 'string',
+            ),
+            'display' => array(
+                'type' => 'boolean',
+            ),
+            'size'    => array(
+                'type' => 'string',
+                'enum' => array(
+                    'small',
+                    'medium',
+                    'large',
+                    'x-large',
+                ),
+            ),
+        ),
+    );
+
+    register_setting(
+        'options',
+        'dashboard_demo_settings',
+        array(
+            'type'         => 'object',
+            'default'      => $default,
+            'show_in_rest' => array(
+                'schema' => $schema,
+            ),
+        )
+    );
+}
+add_action( 'init', __NAMESPACE__ . '\dashboard_register_settings' );
