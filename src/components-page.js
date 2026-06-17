@@ -18,7 +18,7 @@ import {
 	CardHeader,
 	CardBody,
 	CardFooter,
-	Surface,
+	__experimentalSurface as Surface, // eslint-disable-line @wordpress/no-unsafe-wp-apis
 	Modal,
 	Tooltip,
 	ExternalLink,
@@ -144,60 +144,72 @@ const ComponentsPage = () => {
 					title={ __( 'Inputs', 'dashboard-wp-components' ) }
 					initialOpen={ true }
 				>
-					<TextControl
-						label={ __( 'Text Input', 'dashboard-wp-components' ) }
-						value={ text }
-						onChange={ setText }
-						help={ __(
-							'Enter some text',
-							'dashboard-wp-components'
-						) }
-					/>
-					<CheckboxControl
-						label={ __( 'Checkbox', 'dashboard-wp-components' ) }
-						checked={ isChecked }
-						onChange={ setIsChecked }
-					/>
-					<ToggleControl
-						label={ __(
-							'Toggle Switch',
-							'dashboard-wp-components'
-						) }
-						checked={ isToggled }
-						onChange={ setIsToggled }
-					/>
-					<SelectControl
-						label={ __( 'Select One', 'dashboard-wp-components' ) }
-						value={ selectValue }
-						options={ [
-							{ label: 'Small', value: 's' },
-							{ label: 'Medium', value: 'm' },
-							{ label: 'Large', value: 'l' },
-						] }
-						onChange={ setSelectValue }
-					/>
-					<RadioControl
-						label={ __(
-							'Radio Options',
-							'dashboard-wp-components'
-						) }
-						selected={ radioValue }
-						options={ [
-							{ label: 'Option A', value: 'a' },
-							{ label: 'Option B', value: 'b' },
-						] }
-						onChange={ setRadioValue }
-					/>
-					<RangeControl
-						label={ __(
-							'Range Slider',
-							'dashboard-wp-components'
-						) }
-						value={ rangeValue }
-						onChange={ setRangeValue }
-						min={ 0 }
-						max={ 100 }
-					/>
+					<div style={ { marginBottom: '16px' } }>
+						<TextControl
+							label={ __( 'Text Input', 'dashboard-wp-components' ) }
+							value={ text }
+							onChange={ setText }
+							help={ __(
+								'Enter some text',
+								'dashboard-wp-components'
+							) }
+						/>
+					</div>
+					<div style={ { marginBottom: '16px' } }>
+						<CheckboxControl
+							label={ __( 'Checkbox', 'dashboard-wp-components' ) }
+							checked={ isChecked }
+							onChange={ setIsChecked }
+						/>
+					</div>
+					<div style={ { marginBottom: '16px' } }>
+						<ToggleControl
+							label={ __(
+								'Toggle Switch',
+								'dashboard-wp-components'
+							) }
+							checked={ isToggled }
+							onChange={ setIsToggled }
+						/>
+					</div>
+					<div style={ { marginBottom: '16px' } }>
+						<SelectControl
+							label={ __( 'Select One', 'dashboard-wp-components' ) }
+							value={ selectValue }
+							options={ [
+								{ label: 'Small', value: 's' },
+								{ label: 'Medium', value: 'm' },
+								{ label: 'Large', value: 'l' },
+							] }
+							onChange={ setSelectValue }
+						/>
+					</div>
+					<div style={ { marginBottom: '16px' } }>
+						<RadioControl
+							label={ __(
+								'Radio Options',
+								'dashboard-wp-components'
+							) }
+							selected={ radioValue }
+							options={ [
+								{ label: 'Option A', value: 'a' },
+								{ label: 'Option B', value: 'b' },
+							] }
+							onChange={ setRadioValue }
+						/>
+					</div>
+					<div style={ { marginBottom: '16px' } }>
+						<RangeControl
+							label={ __(
+								'Range Slider',
+								'dashboard-wp-components'
+							) }
+							value={ rangeValue }
+							onChange={ setRangeValue }
+							min={ 0 }
+							max={ 100 }
+						/>
+					</div>
 				</PanelBody>
 			</Panel>
 
