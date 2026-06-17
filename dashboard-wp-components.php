@@ -13,7 +13,7 @@ use \add_action;
 
 add_action('admin_menu', __NAMESPACE__ . '\dashboard_page');
 
-# Assets function
+# Assets function for main demo
 function add_assets()
 {
 	// Automatically load imported dependencies and assets version.
@@ -42,6 +42,30 @@ function add_assets()
 
 }
 
+# Assets function for components library
+function add_components_assets()
+{
+	$asset_file = include plugin_dir_path(__FILE__) . 'build/components.asset.php';
+	wp_register_script(
+		'demo-gb-components-app',
+		plugins_url('build/components.js', __FILE__),
+		$asset_file['dependencies'],
+		$asset_file['version'],
+		array(
+			'strategy' => 'defer'
+		)
+	);
+	wp_enqueue_script('demo-gb-components-app');
+
+	wp_register_style(
+		'demo-gb-css',
+		plugins_url('style.css', __FILE__),
+		array('wp-components'),
+		$asset_file['version']
+	);
+	wp_enqueue_style('demo-gb-css');
+}
+
 function dashboard_page()
 {
 
@@ -54,6 +78,16 @@ function dashboard_page()
 	);
 
 	add_action("admin_print_scripts-{$page_hook_suffix}", __NAMESPACE__ . '\add_assets');
+
+	$components_page_hook_suffix = add_dashboard_page(
+		'UI Components',
+		'Components',
+		'manage_options',
+		'gb-components-library',
+		__NAMESPACE__ . '\components_page_render_markup'
+	);
+
+	add_action("admin_print_scripts-{$components_page_hook_suffix}", __NAMESPACE__ . '\add_components_assets');
 }
 
 
@@ -61,6 +95,12 @@ function page_render_markup()
 {
 	# Root node for React mount
 	echo "<div id='demo-app'></div>";
+}
+
+function components_page_render_markup()
+{
+	# Root node for React mount
+	echo "<div id='components-app'></div>";
 }
 
 /**
