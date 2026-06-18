@@ -1,3 +1,4 @@
+import { Page } from '@wordpress/admin-ui';
 import { createRoot, useState } from '@wordpress/element';
 import {
 	Button,
@@ -36,20 +37,10 @@ const ComponentsPage = () => {
 	const [ isModalOpen, setIsModalOpen ] = useState( false );
 
 	return (
-		<div style={ { padding: '20px', maxWidth: '800px' } }>
-			<Heading level={ 1 }>
-				{ __(
-					'WordPress Components Library',
-					'dashboard-wp-components'
-				) }
-			</Heading>
-			<p>
-				{ __(
-					'Explore the basic UI components from the @wordpress/components package.',
-					'dashboard-wp-components'
-				) }
-			</p>
-
+		<Page
+			hasPadding
+			title={ __( 'Компоненты WordPress', 'dashboard-wp-components' ) }
+		>
 			<Panel
 				header={ __(
 					'Buttons & Interaction',
@@ -146,7 +137,10 @@ const ComponentsPage = () => {
 				>
 					<div style={ { marginBottom: '16px' } }>
 						<TextControl
-							label={ __( 'Text Input', 'dashboard-wp-components' ) }
+							label={ __(
+								'Text Input',
+								'dashboard-wp-components'
+							) }
 							value={ text }
 							onChange={ setText }
 							help={ __(
@@ -157,7 +151,10 @@ const ComponentsPage = () => {
 					</div>
 					<div style={ { marginBottom: '16px' } }>
 						<CheckboxControl
-							label={ __( 'Checkbox', 'dashboard-wp-components' ) }
+							label={ __(
+								'Checkbox',
+								'dashboard-wp-components'
+							) }
 							checked={ isChecked }
 							onChange={ setIsChecked }
 						/>
@@ -174,7 +171,10 @@ const ComponentsPage = () => {
 					</div>
 					<div style={ { marginBottom: '16px' } }>
 						<SelectControl
-							label={ __( 'Select One', 'dashboard-wp-components' ) }
+							label={ __(
+								'Select One',
+								'dashboard-wp-components'
+							) }
 							value={ selectValue }
 							options={ [
 								{ label: 'Small', value: 's' },
@@ -294,7 +294,7 @@ const ComponentsPage = () => {
 					</div>
 				</PanelBody>
 			</Panel>
-		</div>
+		</Page>
 	);
 };
 

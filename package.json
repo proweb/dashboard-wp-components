@@ -21,6 +21,7 @@
 		"concurrently": "^10.0.3"
 	},
 	"dependencies": {
+		"@wordpress/admin-ui": "^2.3.1",
 		"@wordpress/api-fetch": "^7.48.1",
 		"@wordpress/components": "^35.0.1",
 		"@wordpress/data": "^10.48.1",
@@ -28,6 +29,7 @@
 		"@wordpress/element": "^8.0.1",
 		"@wordpress/i18n": "^6.21.1",
 		"@wordpress/icons": "^14.0.1",
-		"@wordpress/notices": "^5.48.1"
+		"@wordpress/notices": "^5.48.1",
+		"@wordpress/ui": "^0.15.1"
 	}
 }
