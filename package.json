@@ -17,19 +17,21 @@
 		"start": "concurrently \"npm run server\" \"npm run watch\""
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^34.0.0",
-		"concurrently": "^10.0.4"
+		"@wordpress/scripts": "^34.2.0",
+		"concurrently": "^10.0.5",
+		"eslint": "^10.0.0"
 	},
 	"dependencies": {
-		"@wordpress/admin-ui": "^2.7.0",
-		"@wordpress/api-fetch": "^7.52.0",
-		"@wordpress/components": "^38.0.0",
-		"@wordpress/data": "^10.52.0",
-		"@wordpress/dataviews": "^17.3.0",
-		"@wordpress/element": "^8.4.0",
-		"@wordpress/i18n": "^6.25.0",
-		"@wordpress/icons": "^15.3.0",
-		"@wordpress/notices": "^5.52.0",
-		"@wordpress/ui": "^0.19.0"
+		"@wordpress/admin-ui": "^2.9.0",
+		"@wordpress/api-fetch": "^7.54.0",
+		"@wordpress/components": "^40.0.0",
+		"@wordpress/data": "^10.54.0",
+		"@wordpress/dataviews": "^18.1.0",
+		"@wordpress/element": "^8.6.0",
+		"@wordpress/i18n": "^6.27.0",
+		"@wordpress/icons": "^15.5.0",
+		"@wordpress/notices": "^5.54.0",
+		"@wordpress/ui": "^0.21.0",
+		"use-memo-one": "^1.1.3"
 	}
 }
