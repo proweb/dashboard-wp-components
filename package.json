@@ -17,23 +17,25 @@
 		"start": "concurrently \"npm run server\" \"npm run watch\""
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^34.2.0",
+		"@wordpress/scripts": "^36.0.0",
 		"concurrently": "^10.0.5",
-		"eslint": "^10.0.0",
-		"react": "^18.3.1",
-		"react-dom": "^18.3.1"
+		"eslint": "^10.11.0",
+		"react": "^19.3.0",
+		"react-dom": "^19.3.0"
 	},
 	"dependencies": {
 		"@10up/block-components": "^1.22.4",
-		"@wordpress/admin-ui": "^2.9.0",
-		"@wordpress/api-fetch": "^7.54.0",
-		"@wordpress/components": "^40.0.0",
-		"@wordpress/data": "^10.54.0",
-		"@wordpress/dataviews": "^18.1.0",
-		"@wordpress/element": "^8.6.0",
-		"@wordpress/i18n": "^6.27.0",
-		"@wordpress/icons": "^15.5.0",
-		"@wordpress/notices": "^5.54.0",
-		"@wordpress/ui": "^0.21.0"
+		"@wordpress/admin-ui": "^2.11.0",
+		"@wordpress/api-fetch": "^7.56.0",
+		"@wordpress/components": "^41.0.0",
+		"@wordpress/data": "^10.56.0",
+		"@wordpress/dataviews": "^19.1.0",
+		"@wordpress/element": "^8.8.0",
+		"@wordpress/i18n": "^6.29.0",
+		"@wordpress/icons": "^17.0.0",
+		"@wordpress/notices": "^5.56.0",
+		"@wordpress/ui": "^0.23.0",
+		"ajv": "^8.20.0",
+		"typescript": "^5.8.2"
 	}
 }
